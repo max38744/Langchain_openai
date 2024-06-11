@@ -13,6 +13,7 @@
 <body>
     <div class="container mt-5">
         <h1 class="text-center">ChatGPT 대화</h1>
+        <h2 class="text-center">Welcome, {{ name }}!</h2>
         <form id="chat-form" class="mb-3" method="post">
             {% csrf_token %}
             <div class="form-group">

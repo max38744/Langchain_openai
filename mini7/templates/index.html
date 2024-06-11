@@ -30,7 +30,19 @@
             <h2 class="my-4">문승현(a051271)</h2>
             <ol class="list-group">
                 <li class="list-group-item">
-                    <a href="/selfchatgpt/">질문하러 가기!, self</a>
+                    <input type="text" id="name-input" placeholder="Enter your name">
+                    <button id="submit-button">질문하러 가기!</button>
+                
+                    <script>
+                        document.getElementById('submit-button').addEventListener('click', function() {
+                            var name = document.getElementById('name-input').value;
+                            if (name) {
+                                window.location.href = '/selfchatgpt/?name=' + encodeURIComponent(name);
+                            } else {
+                                alert('Please enter your name');
+                            }
+                        });
+                    </script>
                 </li>
             </ol>
             <h2 class="mt-5">Django</h2>

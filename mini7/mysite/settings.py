@@ -28,8 +28,9 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # 세션 데이터를 데이터베이스에 저장
-SESSION_COOKIE_AGE = 1209600  # 2주 (세션 유지 시간)
+SESSION_COOKIE_AGE = 3600  # 2주 (세션 유지 시간)
 SESSION_SAVE_EVERY_REQUEST = True
+
 
 # Application definition
 
