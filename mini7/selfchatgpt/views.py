@@ -2,7 +2,11 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
+from .models import QueryLog
 from .init_chatmodel import qa, memory
+
+from datetime import datetime
+
 
 def chat(query, chat_history, name):
     # 기존 채팅 기록을 메모리에 로드
@@ -13,7 +17,20 @@ def chat(query, chat_history, name):
 
     # 응답을 메모리에 저장
     memory.save_context({"question": query}, {"answer": result['answer']})
-
+    
+    new_log = QueryLog(
+        username=name,
+        datetime=datetime.now(),
+        query=query,
+        answer=result['answer']
+        )
+    new_log.save()
+    
+    
+    # 모든 QueryLog 데이터를 조회
+    all_logs = QueryLog.objects.all()
+    for log in all_logs:
+        print(log)
     return result['answer']
 
 @csrf_exempt
