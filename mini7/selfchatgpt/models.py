@@ -14,6 +14,7 @@ class QueryLog(models.Model):
 
 class Topic(models.Model):
     qa_id = models.ForeignKey(QueryLog, on_delete=models.CASCADE, db_column='qa_id')
+    user_name = models.CharField(max_length=255, null=True)
     topic_id = models.CharField(max_length=100, null=False)
     title = models.TextField(null=True, blank=True)
     

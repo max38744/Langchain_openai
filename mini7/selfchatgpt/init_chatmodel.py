@@ -4,6 +4,9 @@ from langchain.chat_models import ChatOpenAI
 from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationBufferMemory
 from langchain.schema import HumanMessage, SystemMessage, Document
+from django.urls import reverse
+
+import urllib
 import pandas as pd
 import openai
 
@@ -38,7 +41,7 @@ def summary(chat_history):
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": "다음의 대화의 가장 중요한 키워드를 3개 이하로 알려줘"},  # 기본 역할 부여
+            {"role": "system", "content": "다음의 대화의 가장 중요한 키워드를 3개 이하로 알려주고 '핵심 키워드 : 키워드 1, 키워드2' 양식으로 알려줘"},  # 기본 역할 부여
             {"role": "user", "content": talk},
         ]
     )

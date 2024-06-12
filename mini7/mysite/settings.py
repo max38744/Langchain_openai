@@ -30,7 +30,7 @@ ALLOWED_HOSTS = ['*']
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # 세션 데이터를 데이터베이스에 저장
 SESSION_COOKIE_AGE = 3600  # 2주 (세션 유지 시간)
 SESSION_SAVE_EVERY_REQUEST = True
-
+SESSION_COOKIE_NAME = 'session_id' 
 
 # Application definition
 
@@ -53,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'selfchatgpt.middleware.CustomSessionMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
