@@ -5,6 +5,7 @@ from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationBufferMemory
 from langchain.schema import HumanMessage, SystemMessage, Document
 import pandas as pd
+import openai
 
 # 데이터 로드 (필요시)
 # data = pd.read_csv("./news_chris.csv")
@@ -25,3 +26,21 @@ memory = ConversationBufferMemory(memory_key="chat_history", input_key="question
 
 # ConversationalRetrievalQA 체인 초기화
 qa = ConversationalRetrievalChain.from_llm(llm=chat, retriever=retriever, memory=memory, return_source_documents=True, output_key="answer")
+
+
+def summary(chat_history):
+    talk = ""
+    for qa in chat_history:
+        talk += '질문 : ' + qa['question'] + '\n'
+        talk += '대답 : ' + qa['response'] + '\n'
+        
+    # # API를 사용하여 'gpt-3.5-turbo' 모델로부터 응답을 생성합니다.
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "다음의 대화의 가장 중요한 키워드를 3개 이하로 알려줘"},  # 기본 역할 부여
+            {"role": "user", "content": talk},
+        ]
+    )
+
+    return response.choices[0].message.content
