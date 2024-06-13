@@ -1,22 +1,26 @@
+
 <!doctype html>
 {% load static %}
 <html lang="en">
 <head>
+    <link rel="icon" type="image/png" href="{% static 'images/favicon_catr.ico' %}" sizes="36x36">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&family=Hahmlet:wght@100..900&family=Jua&family=Nanum+Gothic&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'selfchatgpt/favicon-16x16.png' %}">
+    {% comment %} <link rel="icon" type="image/png" sizes="16x16" href="{% static 'selfchatgpt/favicon-16x16.png' %}"> {% endcomment %}
     <title>ChatGPT 요청</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     {% block extrahead %}
     <link rel="stylesheet" href="{% static 'selfchatgpt/style.css' %}">
+    
     {% endblock %}
     <style>
         @font-face {
             font-family:'bagel';
             src: url('{% static 'selfchatgpt/BagelFat-Fat.otf' %}') format('opentype');
+            
         }
         body {
             font-family: "bagel", sans-serif;
@@ -24,12 +28,14 @@
             font-style: normal;
             letter-spacing: auto;
             font-size: 14px;
+            background-color : #EAFFFD;
+            width : 100vw;
         }
-        .body {
-            padding-bottom: 40px;
-        }
+        
         .containerCon {
             padding-top: 50px;
+            width: 100vw;
+
             margin-bottom: 20px;
         }
         .titleBox {
@@ -38,9 +44,13 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            margin-top : 40px;
+            margin-bottom : 40px;
         }
         .title {
             text-align: center;
+            margin-top:6px;
+
         }
         .admin {
             position: absolute;
@@ -50,38 +60,52 @@
         body {
             background-image: url('{% static 'selfchatgpt/cat_paw.avif' %}');
             background-repeat: repeat;
+            height: 100vh
         }
         .mainContent {
-            width: 80%;
+            width: 400px;
         }
         .contentBoxBox {
             display: flex;
             justify-content: center;
-            height: calc(100vh - 2px);
+            height: 100%;
         }
         .sideBar {
-            background-color: red;
-            width: 20%;
+            background-color: rgba(256, 256, 256, 0);
+            width: auto;
             margin-right: 12px;
+            margin-left: 12px;
             border-radius: 5px;
-            height: calc(100vh - 2px);
-            padding: 10px;
+            height: 100%;
+            min-height: 400px;
+            padding: 10px 10px 10px 1px;
+            flex-glow : 1;
+            display: flex;
+            justify-content: right;
+            border: solid 1px black;
+            
         }
         .mainBox {
-            width: 100%;
+            width: 200px;
             height: 100%;
-            background-color: white;
+            background-color: none;
             display: flex;
             align-items: start;
+            justify-content: center;
             flex-direction: column;
             z-index: 0;
         }
         .userList {
             width: 100%;
-            height: auto;
-            background-color: black;
+            height: 40px;
+            background-color: #219C90;
             color: white;
             text-align: center;
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            border-radius : 10px;
+            margin-left : 6px;
         }
         h1 {
             font-family: "bagel", sans-serif;
@@ -101,7 +125,7 @@
             margin-bottom: 10px;
             border: 5px solid #dbeef0;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            height: calc(100vh - 40px);
+            height: 120%;
             max-height: calc(100vh - 40px);
             display: flex;
             flex-direction: column;
@@ -174,6 +198,7 @@
         .conversation {
             display: flex;
             flex-direction: column;
+            heigh: 100px;
         }
         .mt-5 {
             margin: 0px;
@@ -185,28 +210,82 @@
             justify-content: center;
         }
         .topic_list {
-            background-color: pink;
+            background-color: white;
+            width: 170px;
         }
         .history_title {
             padding: 10px;
             margin: 6px;
-            background-color: green;
+            background-color: #95D2B3;
             cursor: pointer;
+            width: 170px;
+            border-radius: 10px;
         }
+        .redBtn{
+            margin-bottom : 20px;
+        }
+        .dancingCat1{
+            position : absolute;
+            left : 70px;
+            top: 300px;
+            width: 400px;
+            border-radius:10px;
+        }
+        
+         .dancingCat2{
+            position : absolute;
+            right : 70px;
+            top: 300px;
+            width: 400px;
+            border-radius:10px;
+        }
+
+        .editDancingCat1{
+            
+            width: 300px;
+            border-radius:10px;
+            margin-left : 20px;
+        }
+
+        .editDancingCat2{
+            
+            width: 300px;
+            border-radius:10px;
+            margin-left : 20px;
+            margin-right : 20px;
+        }
+
+        .anker{
+            min-width: 400px;
+        }
+
+       
     </style>
+
+   
+
 </head>
 <body class="bodyCon">
-    <a href="" class="admin">
+    {% load static %}
+ {% comment %} <img class = "editDancingCat" src="{% static 'images/dancing_cat.gif' %}" alt="춤추는 고양이"/> {% endcomment %}
+        
+
+    <a href="http://52.14.38.213/admin/" class="admin">
+        
+
         <button class="btn btn-warning">
             관리자 페이지
         </button>
     </a>
-    <div class="container containerCon">
-        <div class="titleBox">
+    <div class=" containerCon">
+        <div class="titleBox anker">
             <h1 class="title">Ailve냥이랑 대화!</h1>
             <h2 class="title" id="name-input">Welcome, {{ name }}!</h2>
         </div>
         <div class="contentBoxBox">
+            <div>
+                <img class = "editDancingCat1" src="{% static 'images/dancing_cat.gif' %}" alt="춤추는 고양이"/>
+            </div>
             <div class="sideBar">
                 <div class="mainBox">
                     <div class="userList">
@@ -226,7 +305,7 @@
                 </div>
             </div>
             <div class="mainContent">
-                <form id="chat-form" class="mb-3" method="post">
+                <form id="chat-form" class="mb-3 anker" method="post">
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="question">KT AIVLE에게 질문하기</label>
@@ -255,9 +334,12 @@
                         {% endif %}
                     </div>
                 </div>
-                <div class="text-center mt-3">
+                <div class="text-center mt-3 redBtn">
                     <a href="{% url 'selfchatgpt:clear_chat' %}?name={{ name }}" class="btn btn-danger">대화 기록 삭제</a>
                 </div>
+            </div>
+            <div>
+            <img class = "editDancingCat2" src="{% static 'images/dancing_cat.gif' %}" alt="춤추는 고양이"/>
             </div>
         </div>
     </div>

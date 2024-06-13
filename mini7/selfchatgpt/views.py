@@ -99,12 +99,8 @@ def chat(query, name, session_id):
     # 기존 채팅 기록을 메모리에 로드
     memory.load_memory_variables({})
     
-    # Define the system message
-    system_message = "모든 답변에 대해서 고양이인 것 처럼 답변해주고 최대한 자세하게 답변해줘"
-    combined_prompt = f"네게 바라는 것은 '{system_message}'와 같은 요구사항에 따라 \n '{query}'질문에 답변에 대답해줘"
-
     # 새로운 질문을 받고 응답을 생성
-    result = qa(combined_prompt)
+    result = qa(query)
 
     # 응답을 메모리에 저장
     memory.save_context({"question": query}, {"answer": result['answer']})
